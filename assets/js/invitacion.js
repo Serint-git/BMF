@@ -121,9 +121,12 @@ giftChoices.forEach(button => button.addEventListener('click', () => {
   const selected = button.dataset.giftPerson;
   giftChoices.forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
   giftReactionTag.textContent = selected === 'mf' ? 'MARÍA FERNANDA DICE:' : 'BENITO DICE:';
-  // Sólo al seleccionar a Benito: 3% de probabilidad de sustituir SU respuesta normal.
-  // Se conserva el mismo cuadro, sin mensajes o letreros adicionales.
-  const compa = selected === 'benito' && Math.random() < 0.03;
+  // El easter egg de Benito pesa 0.8 frente a 1 de cada respuesta normal:
+  // así aparece un 20% menos que cada una de sus seis respuestas normales.
+  // Mantiene el mismo cuadro, sin letreros adicionales.
+  const rareWeight = 0.8;
+  const compaChance = rareWeight / (giftLines.benito.happy.length + rareWeight);
+  const compa = selected === 'benito' && Math.random() < compaChance;
   giftReaction.classList.toggle('gifts__reaction--compa', compa);
   giftReactionText.textContent = compa
     ? '“Por fin alguien reconoce al verdadero COMPAÑERE.”'

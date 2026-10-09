@@ -121,7 +121,13 @@ giftChoices.forEach(button => button.addEventListener('click', () => {
   const selected = button.dataset.giftPerson;
   giftChoices.forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
   giftReactionTag.textContent = selected === 'mf' ? 'MARÍA FERNANDA DICE:' : 'BENITO DICE:';
-  giftReactionText.textContent = `“${anotherGiftLine(selected, 'happy')}”`;
+  // Sólo al seleccionar a Benito: 3% de probabilidad de sustituir SU respuesta normal.
+  // Se conserva el mismo cuadro, sin mensajes o letreros adicionales.
+  const compa = selected === 'benito' && Math.random() < 0.03;
+  giftReaction.classList.toggle('gifts__reaction--compa', compa);
+  giftReactionText.textContent = compa
+    ? '“Por fin alguien reconoce al verdadero COMPAÑERE.”'
+    : `“${anotherGiftLine(selected, 'happy')}”`;
   giftJealousText.textContent = `${selected === 'mf' ? 'BENITO' : 'MARÍA FERNANDA'}: “${anotherGiftLine(selected, 'jealous')}”`;
   giftReaction.hidden = false;
   giftReaction.classList.remove('gifts__reaction--pop');

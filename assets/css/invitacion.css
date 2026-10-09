@@ -43,3 +43,7 @@
 @keyframes gift-pop{0%{opacity:.4;scale:.97}100%{opacity:1;scale:1}}
 @media (max-width:650px){.gifts__choices{gap:8px}.gifts__choice{font-size:clamp(11px,3.7vw,15px);padding:12px 9px;min-height:88px}.gifts__reaction{padding:17px 15px}.gifts__reaction-main{font-size:clamp(22px,6.2vw,27px)}.gifts__reaction-jealous{font-size:13px}}
 @media (prefers-reduced-motion:reduce){.gifts__reaction--pop{animation:none}}
+
+/* MF-BENITO-005 — la respuesta rara usa el mismo cuadro; sólo cambia su color. */
+.gifts__reaction--compa{background:#c7a0ff;box-shadow:5px 5px 0 var(--blue)}
+.gifts__reaction--compa .gifts__reaction-tag{color:#c7a0ff}
